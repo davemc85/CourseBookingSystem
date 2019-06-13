@@ -16,14 +16,14 @@ public class Course {
     @Column
     private String town;
 
-    @Column
-    private int rating;
+    @Enumerated(EnumType.ORDINAL)
+    private RatingType rating;
 
     @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
     private List<Booking> bookings;
 
 
-    public Course(String name, String town, int rating) {
+    public Course(String name, String town, RatingType rating) {
         this.name = name;
         this.town = town;
         this.rating = rating;
@@ -57,11 +57,11 @@ public class Course {
         this.town = town;
     }
 
-    public int getRating() {
+    public RatingType getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(RatingType rating) {
         this.rating = rating;
     }
 
