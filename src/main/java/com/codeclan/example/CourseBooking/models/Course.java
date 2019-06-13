@@ -1,9 +1,14 @@
 package com.codeclan.example.CourseBooking.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Entity
+@Table(name="courses")
 public class Course {
 
     @Id
@@ -16,14 +21,15 @@ public class Course {
     @Column
     private String town;
 
-    @Enumerated(EnumType.ORDINAL)
-    private RatingType rating;
+    @Column
+    private int rating;
 
-    @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private List<Booking> bookings;
 
 
-    public Course(String name, String town, RatingType rating) {
+    public Course(String name, String town, int rating) {
         this.name = name;
         this.town = town;
         this.rating = rating;
@@ -57,11 +63,11 @@ public class Course {
         this.town = town;
     }
 
-    public RatingType getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(RatingType rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 

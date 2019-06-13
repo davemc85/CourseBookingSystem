@@ -1,10 +1,10 @@
 package com.codeclan.example.CourseBooking.models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+
+@Entity
+@Table(name="bookings" )
 public class Booking {
 
     @Id
@@ -12,9 +12,11 @@ public class Booking {
     private Long id;
     @Column
     private String date;
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "course", nullable = false)
     private Customer customer;
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "customer", nullable = false)
     private Course course;
 
 

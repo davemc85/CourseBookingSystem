@@ -1,9 +1,14 @@
 package com.codeclan.example.CourseBooking.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Entity
+@Table(name="customers")
 public class Customer {
 
     @Id
@@ -20,7 +25,8 @@ public class Customer {
     private int age;
 
 
-    @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Booking> bookings;
 
 
